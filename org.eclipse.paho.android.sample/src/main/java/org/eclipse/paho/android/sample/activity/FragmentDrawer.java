@@ -2,18 +2,20 @@ package org.eclipse.paho.android.sample.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -40,7 +42,7 @@ public class FragmentDrawer extends Fragment {
         this.drawerListener = listener;
     }
 
-    public void addConnection(Connection connection){
+    public void addConnection(Connection connection) {
         System.out.println("Adding new Connection:  " + connection.getId());
         NavDrawerItem navItem = new NavDrawerItem(connection);
         data.add(navItem);
@@ -52,7 +54,7 @@ public class FragmentDrawer extends Fragment {
         System.out.println("Updating Connection: " + connection.getId());
         Iterator<NavDrawerItem> iterator = data.iterator();
         int index = 0;
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             NavDrawerItem item = iterator.next();
             if (item.getHandle().equals(connection.handle())) {
                 item = new NavDrawerItem(connection);
@@ -64,11 +66,11 @@ public class FragmentDrawer extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    public void removeConnection(Connection connection){
+    public void removeConnection(Connection connection) {
         System.out.println("Removing connection from drawer: " + connection.getId());
         Iterator<NavDrawerItem> iterator = data.iterator();
 
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             NavDrawerItem item = iterator.next();
             if (item.getHandle().equals(connection.handle())) {
                 iterator.remove();
@@ -77,26 +79,21 @@ public class FragmentDrawer extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    public void clearConnections(){
+    public void clearConnections() {
         data.clear();
         adapter.notifyDataSetChanged();
     }
 
-    public void notifyDataSetChanged(){
+    public void notifyDataSetChanged() {
         adapter.notifyDataSetChanged();
     }
 
     private List<NavDrawerItem> getData() {
-
-
-
-
         return data;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
@@ -122,7 +119,6 @@ public class FragmentDrawer extends Fragment {
             }
         });
 
-
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -143,7 +139,6 @@ public class FragmentDrawer extends Fragment {
 
         return layout;
     }
-
 
     public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar) {
         containerView = getActivity().findViewById(fragmentId);
@@ -226,14 +221,15 @@ public class FragmentDrawer extends Fragment {
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
         }
-
-
     }
 
     public interface FragmentDrawerListener {
         void onDrawerItemSelected(int position);
+
         void onDrawerItemLongSelected(int position);
+
         void onAddConnectionSelected();
+
         void onHelpSelected();
     }
 }

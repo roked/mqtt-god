@@ -48,5 +48,4 @@ class MqttServiceBinder extends Binder {
 	public String getActivityToken() {
 		return activityToken;
 	}
-
 }

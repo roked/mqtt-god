@@ -119,7 +119,7 @@ public class ActionListener implements IMqttActionListener {
 
         Connection c = Connections.getInstance(context).getConnection(clientHandle);
         @SuppressLint("StringFormatMatches") String actionTaken = context.getString(R.string.toast_pub_success,
-              (Object[]) additionalArgs);
+                (Object[]) additionalArgs);
         c.addAction(actionTaken);
         Notify.toast(context, actionTaken, Toast.LENGTH_SHORT);
         System.out.print("Published");
@@ -177,7 +177,7 @@ public class ActionListener implements IMqttActionListener {
                 Log.i(TAG, "Auto-subscribing to: " + sub.getTopic() + "@ QoS: " + sub.getQos());
                 connection.getClient().subscribe(sub.getTopic(), sub.getQos());
             }
-        } catch (MqttException ex){
+        } catch (MqttException ex) {
             Log.e(TAG, "Failed to Auto-Subscribe: " + ex.getMessage());
         }
 

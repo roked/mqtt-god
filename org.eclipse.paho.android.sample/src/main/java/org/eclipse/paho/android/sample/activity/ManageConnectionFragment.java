@@ -16,14 +16,15 @@
 package org.eclipse.paho.android.sample.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import org.eclipse.paho.android.sample.R;
 import org.eclipse.paho.android.sample.internal.Connections;
@@ -44,8 +45,7 @@ public class ManageConnectionFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         connections = Connections.getInstance(this.getActivity())
-                .getConnections();
+        connections = Connections.getInstance(this.getActivity()).getConnections();
         connectionKey = this.getArguments().getString(ActivityConstants.CONNECTION_KEY);
         connection = connections.get(connectionKey);
         setHasOptionsMenu(false);
@@ -53,8 +53,7 @@ public class ManageConnectionFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_manage, container, false);
         final String name = connection.getId() + "@" + connection.getHostName() + ":" + connection.getPort();
         TextView label = (TextView) rootView.findViewById(R.id.connection_id_text);
@@ -64,7 +63,7 @@ public class ManageConnectionFragment extends Fragment {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               System.out.println("Deleting Connection: " + name + ".");
+                System.out.println("Deleting Connection: " + name + ".");
                 connections.remove(connectionKey);
                 Connections.getInstance(getActivity()).removeConnection(connection);
                 FragmentManager fragmentManager = getFragmentManager();
@@ -90,8 +89,6 @@ public class ManageConnectionFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-
-
         // Inflate the layout for this fragment
         return rootView;
     }

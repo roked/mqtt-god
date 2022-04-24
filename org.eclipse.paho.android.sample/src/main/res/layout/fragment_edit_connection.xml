@@ -1,12 +1,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="org.eclipse.paho.android.sample.activity.HomeFragment"
-    android:id="@+id/scrollView"
     android:layout_alignParentStart="true"
-    android:layout_alignParentLeft="true">
+    android:layout_alignParentLeft="true"
+    android:orientation="vertical"
+    tools:context="org.eclipse.paho.android.sample.activity.HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,34 +15,34 @@
         <!--                    General Settings                     -->
 
         <TextView
-            android:text="@string/add_connection_general_label"
+            android:id="@+id/generalTextView"
             style="@style/HeaderText"
-            android:id="@+id/generalTextView" />
+            android:text="@string/add_connection_general_label" />
 
         <LinearLayout
             android:id="@+id/client_id_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/generalTextView">
+            android:layout_below="@+id/generalTextView"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/client_id_label"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_client_id_label"/>
+                android:text="@string/add_connection_client_id_label" />
 
             <EditText
+                android:id="@+id/client_id"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
                 android:ems="10"
+                android:inputType="text"
                 android:lines="1"
-                android:id="@+id/client_id"
-                android:text="@string/add_connection_client_id_default"
-                android:inputType="text"/>
+                android:text="@string/add_connection_client_id_default" />
         </LinearLayout>
 
         <View
@@ -51,31 +51,30 @@
             android:layout_below="@+id/client_id_group" />
 
 
-
         <LinearLayout
             android:id="@+id/server_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/divider1">
+            android:layout_below="@+id/divider1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/hostname_label"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_server_label"/>
+                android:text="@string/add_connection_server_label" />
 
             <EditText
+                android:id="@+id/hostname"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
                 android:ems="10"
+                android:inputType="text"
                 android:lines="1"
-                android:id="@+id/hostname"
-                android:text="@string/add_connection_server_default"
-                android:inputType="text"/>
+                android:text="@string/add_connection_server_default" />
         </LinearLayout>
 
         <View
@@ -85,29 +84,29 @@
 
         <LinearLayout
             android:id="@+id/port_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/divider2">
+            android:layout_below="@+id/divider2"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/message_text"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_port_label"/>
+                android:text="@string/add_connection_port_label" />
 
             <EditText
+                android:id="@+id/add_connection_port"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
-                android:inputType="number"
-                android:maxLength="5"
+                android:layout_marginRight="30dp"
                 android:ems="10"
+                android:inputType="number"
                 android:lines="1"
-                android:id="@+id/add_connection_port"
-                android:text="@integer/default_port"/>
+                android:maxLength="5"
+                android:text="@integer/default_port" />
         </LinearLayout>
 
         <View
@@ -117,45 +116,45 @@
 
 
         <Switch
-            android:text="@string/add_connection_clean_session_label"
             android:id="@+id/clean_session_switch"
+            style="@style/Switch"
             android:layout_below="@+id/divider3"
-            style="@style/Switch" />
+            android:text="@string/add_connection_clean_session_label" />
 
         <!--                    Advanced Settings                    -->
         <!--                    General Settings                     -->
 
 
         <TextView
-            android:text="@string/add_connection_advanced_label"
+            android:id="@+id/advancedTextView"
             style="@style/HeaderText"
             android:layout_below="@+id/clean_session_switch"
-            android:id="@+id/advancedTextView" />
+            android:text="@string/add_connection_advanced_label" />
 
 
         <LinearLayout
             android:id="@+id/username_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/advancedTextView">
+            android:layout_below="@+id/advancedTextView"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/username_label"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_username_label"/>
+                android:text="@string/add_connection_username_label" />
 
             <EditText
+                android:id="@+id/username"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
                 android:ems="10"
-                android:lines="1"
-                android:id="@+id/username"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:lines="1" />
         </LinearLayout>
 
         <View
@@ -165,27 +164,27 @@
 
         <LinearLayout
             android:id="@+id/password_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/divider4">
+            android:layout_below="@+id/divider4"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/password_label"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_password_label"/>
+                android:text="@string/add_connection_password_label" />
 
             <EditText
+                android:id="@+id/password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
                 android:ems="10"
-                android:lines="1"
-                android:id="@+id/password"
                 android:inputType="text"
+                android:lines="1"
                 tools:ignore="TextFields" />
         </LinearLayout>
 
@@ -196,53 +195,53 @@
 
         <LinearLayout
             android:id="@+id/tls_server_key_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/divider5">
+            android:layout_below="@+id/divider5"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tls_server_label"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_tls_server_key_label"/>
+                android:text="@string/add_connection_tls_server_key_label" />
 
             <EditText
+                android:id="@+id/tls_server_key"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
                 android:ems="10"
-                android:lines="1"
-                android:id="@+id/tls_server_key"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:lines="1" />
         </LinearLayout>
 
 
         <LinearLayout
             android:id="@+id/tls_client_key_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tls_server_key_group">
+            android:layout_below="@+id/tls_server_key_group"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tls_client_key_label"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_tls_client_key_label"/>
+                android:text="@string/add_connection_tls_client_key_label" />
 
             <EditText
+                android:id="@+id/tls_client_key"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
                 android:ems="10"
-                android:lines="1"
-                android:id="@+id/tls_client_key"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:lines="1" />
         </LinearLayout>
 
         <View
@@ -252,29 +251,29 @@
 
         <LinearLayout
             android:id="@+id/timeout_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/divider6">
+            android:layout_below="@+id/divider6"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/timeout_text"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_timeout_label"/>
+                android:text="@string/add_connection_timeout_label" />
 
             <EditText
+                android:id="@+id/timeout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
-                android:inputType="number"
-                android:maxLength="5"
+                android:layout_marginRight="30dp"
                 android:ems="10"
+                android:inputType="number"
                 android:lines="1"
-                android:id="@+id/timeout"
-                android:text="@integer/default_timeout"/>
+                android:maxLength="5"
+                android:text="@integer/default_timeout" />
         </LinearLayout>
 
         <View
@@ -284,66 +283,64 @@
 
         <LinearLayout
             android:id="@+id/keep_alive_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/divider7">
+            android:layout_below="@+id/divider7"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/keepalive_text"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_keepalive_label"/>
+                android:text="@string/add_connection_keepalive_label" />
 
             <EditText
+                android:id="@+id/keepalive"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
-                android:inputType="number"
-                android:maxLength="5"
+                android:layout_marginRight="30dp"
                 android:ems="10"
+                android:inputType="number"
                 android:lines="1"
-                android:id="@+id/keepalive"
-                android:text="@integer/default_keep_alive"/>
+                android:maxLength="5"
+                android:text="@integer/default_keep_alive" />
         </LinearLayout>
-
-
 
 
         <!--                  Last Will & Testament                  -->
 
         <TextView
-            android:text="@string/add_connection_lwt_label"
+            android:id="@+id/lwtTextView"
             style="@style/HeaderText"
             android:layout_below="@+id/keep_alive_group"
-            android:id="@+id/lwtTextView" />
+            android:text="@string/add_connection_lwt_label" />
 
 
         <LinearLayout
             android:id="@+id/topic_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lwtTextView">
+            android:layout_below="@+id/lwtTextView"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/topic_group_label"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_lwt_topic_label"/>
+                android:text="@string/add_connection_lwt_topic_label" />
 
             <EditText
+                android:id="@+id/lwt_topic"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
                 android:ems="10"
-                android:lines="1"
-                android:id="@+id/lwt_topic"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:lines="1" />
         </LinearLayout>
 
         <View
@@ -352,33 +349,30 @@
             android:layout_below="@+id/topic_group" />
 
 
-
         <LinearLayout
             android:id="@+id/lwt_message_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/divider8">
+            android:layout_below="@+id/divider8"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/lwt_message_label"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_lwt_message_label"/>
+                android:text="@string/add_connection_lwt_message_label" />
 
             <EditText
+                android:id="@+id/lwt_message"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
                 android:layout_marginEnd="30dp"
-                android:inputType="textMultiLine"
+                android:layout_marginRight="30dp"
                 android:ems="10"
-                android:lines="4"
-                android:id="@+id/lwt_message"/>
+                android:inputType="textMultiLine"
+                android:lines="4" />
         </LinearLayout>
-
-
 
 
         <View
@@ -387,25 +381,24 @@
             android:layout_below="@+id/lwt_message_group" />
 
 
-
         <LinearLayout
             android:id="@+id/lwt_qos_group"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/divider9">
+            android:layout_below="@+id/divider9"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/lwt_qos_label"
+                style="@style/spinnerTextFieldLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/spinnerTextFieldLabel"
-                android:text="@string/add_connection_lwt_qos_label"/>
+                android:text="@string/add_connection_lwt_qos_label" />
 
             <Spinner
+                android:id="@+id/lwt_qos_spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/lwt_qos_spinner"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <View
@@ -414,17 +407,14 @@
             android:layout_below="@+id/lwt_qos_group" />
 
         <Switch
-            android:text="@string/add_connection_lwt_retain_label"
             android:id="@+id/retain_switch"
+            style="@style/Switch"
             android:layout_below="@+id/divider10"
-            style="@style/Switch" />
-
+            android:text="@string/add_connection_lwt_retain_label" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="40dp"/>
-
-
+            android:layout_height="40dp" />
     </RelativeLayout>
 </ScrollView>
 

@@ -1,7 +1,6 @@
 package org.eclipse.paho.android.sample.components;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,19 +8,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import org.eclipse.paho.android.sample.R;
 import org.eclipse.paho.android.sample.model.Subscription;
 
 import java.util.ArrayList;
 
-public class SubscriptionListItemAdapter extends ArrayAdapter<Subscription>{
+public class SubscriptionListItemAdapter extends ArrayAdapter<Subscription> {
 
     private final Context context;
     private final ArrayList<Subscription> topics;
     private final ArrayList<OnUnsubscribeListner> unsubscribeListners = new ArrayList<OnUnsubscribeListner>();
     //private final Map<String, String> topics;
 
-    public SubscriptionListItemAdapter(Context context, ArrayList<Subscription> topics){
+    public SubscriptionListItemAdapter(Context context, ArrayList<Subscription> topics) {
         super(context, R.layout.subscription_list_item, topics);
         this.context = context;
         this.topics = topics;
@@ -30,12 +31,12 @@ public class SubscriptionListItemAdapter extends ArrayAdapter<Subscription>{
 
     @NonNull
     @Override
-    public View getView(final int position, View convertView, @NonNull ViewGroup parent){
+    public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.subscription_list_item, parent, false);
         TextView topicTextView = (TextView) rowView.findViewById(R.id.message_text);
         ImageView topicDeleteButton = (ImageView) rowView.findViewById(R.id.topic_delete_image);
-        TextView  qosTextView = (TextView) rowView.findViewById(R.id.qos_label);
+        TextView qosTextView = (TextView) rowView.findViewById(R.id.qos_label);
         topicTextView.setText(topics.get(position).getTopic());
         String qosString = context.getString(R.string.qos_text, topics.get(position).getQos());
         qosTextView.setText(qosString);
@@ -58,14 +59,11 @@ public class SubscriptionListItemAdapter extends ArrayAdapter<Subscription>{
         return rowView;
     }
 
-    public void addOnUnsubscribeListner(OnUnsubscribeListner listner){
+    public void addOnUnsubscribeListner(OnUnsubscribeListner listner) {
         unsubscribeListners.add(listner);
     }
 
-    public interface OnUnsubscribeListner{
+    public interface OnUnsubscribeListner {
         void onUnsubscribe(Subscription subscription);
     }
-
-
-
 }

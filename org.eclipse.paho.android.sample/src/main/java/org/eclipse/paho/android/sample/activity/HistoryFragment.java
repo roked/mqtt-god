@@ -1,12 +1,13 @@
 package org.eclipse.paho.android.sample.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
 
 import org.eclipse.paho.android.sample.R;
 import org.eclipse.paho.android.sample.components.MessageListItemAdapter;
@@ -22,8 +23,8 @@ public class HistoryFragment extends Fragment {
 
     private MessageListItemAdapter messageListAdapter;
 
-
     private ArrayList<ReceivedMessage> messages;
+
     public HistoryFragment() {
 
         setHasOptionsMenu(true);
@@ -33,8 +34,7 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Map<String, Connection> connections = Connections.getInstance(this.getActivity())
-                .getConnections();
+        Map<String, Connection> connections = Connections.getInstance(this.getActivity()).getConnections();
         Connection connection = connections.get(this.getArguments().getString(ActivityConstants.CONNECTION_KEY));
         System.out.println("History Fragment: " + connection.getId());
         setHasOptionsMenu(true);
@@ -47,16 +47,10 @@ public class HistoryFragment extends Fragment {
                 messageListAdapter.notifyDataSetChanged();
             }
         });
-
-
-
-
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
         View rootView = inflater.inflate(R.layout.fragment_connection_history, container, false);
@@ -73,15 +67,8 @@ public class HistoryFragment extends Fragment {
                 messageListAdapter.notifyDataSetChanged();
             }
         });
-
         // Inflate the layout for this fragment
         return rootView;
-
-
-
-
     }
-
-
 }
 

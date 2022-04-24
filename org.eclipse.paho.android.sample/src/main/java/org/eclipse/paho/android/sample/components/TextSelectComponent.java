@@ -10,13 +10,14 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+
+import androidx.appcompat.app.AlertDialog;
 
 import org.eclipse.paho.android.sample.R;
 
@@ -48,11 +49,11 @@ public class TextSelectComponent extends RelativeLayout {
         this.subLabel = (TextView) findViewById(R.id.subLabel);
         RelativeLayout textSelectLayout = (RelativeLayout) findViewById(R.id.container);
         final TypedArray attributeArray = context.obtainStyledAttributes(attr, R.styleable.TextSelectComponent);
-        mainLabel.setText(attributeArray.getString(R.styleable.TextSelectComponent_main_label));
-        this.subLabel.setText(attributeArray.getString(R.styleable.TextSelectComponent_default_value));
-        this.inputTitle = attributeArray.getString(R.styleable.TextSelectComponent_input_title);
-        setText = attributeArray.getString(R.styleable.TextSelectComponent_default_value);
-        this.numberInput = attributeArray.getBoolean(R.styleable.TextSelectComponent_number, false);
+        mainLabel.setText(attributeArray.getString(R.styleable.TextSelectComponent_tsc_main_label));
+        this.subLabel.setText(attributeArray.getString(R.styleable.TextSelectComponent_tsc_default_value));
+        this.inputTitle = attributeArray.getString(R.styleable.TextSelectComponent_tsc_input_title);
+        setText = attributeArray.getString(R.styleable.TextSelectComponent_tsc_default_value);
+        this.numberInput = attributeArray.getBoolean(R.styleable.TextSelectComponent_tsc_number, false);
         textSelectLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,15 +63,13 @@ public class TextSelectComponent extends RelativeLayout {
         attributeArray.recycle();
     }
 
-
-
-    private void showInputDialog(){
+    private void showInputDialog() {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams") View promptView = layoutInflater.inflate(R.layout.text_input_dialog, null);
         TextView promptText = (TextView) promptView.findViewById(R.id.textView);
         promptText.setText(inputTitle);
         final EditText promptEditText = (EditText) promptView.findViewById(R.id.edittext);
-        if(this.numberInput){
+        if (this.numberInput) {
             Log.i(TAG, "NUMBER INPUT");
             promptEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
         } else {
@@ -81,13 +80,13 @@ public class TextSelectComponent extends RelativeLayout {
         Log.i(TAG, "input Type: " + promptEditText.getInputType());
         promptEditText.setText(setText);
 
-
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setView(promptView);
 
         // Set up a dialog window
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
                     public void onClick(DialogInterface dialog, int id) {
                         String text = promptEditText.getText().toString();
                         subLabel.setText(text);
@@ -95,17 +94,17 @@ public class TextSelectComponent extends RelativeLayout {
                             callback.onTextUpdate(text);
                         }
 
+                    }})
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
                     }
-                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
         });
-
-        alertDialogBuilder.setOnKeyListener(new Dialog.OnKeyListener(){
+        alertDialogBuilder.setOnKeyListener(new Dialog.OnKeyListener() {
             @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event){
-                if(keyCode == KeyEvent.KEYCODE_BACK){
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
                     dialog.cancel();
                 }
                 return true;
@@ -117,10 +116,9 @@ public class TextSelectComponent extends RelativeLayout {
         alert.show();
     }
 
-    public void register(ITextSelectCallback callback){
+    public void register(ITextSelectCallback callback) {
         registeredCallbacks.add(callback);
     }
-
 
     public String getSetText() {
         return setText;
@@ -128,21 +126,14 @@ public class TextSelectComponent extends RelativeLayout {
 
     public void setSetText(String setText) {
         this.setText = setText;
-
         this.subLabel.setText(setText);
     }
 
-    public int getSetInt(){
+    public int getSetInt() {
         return Integer.parseInt(setText);
     }
 
-    public void setSetInt(int value){
+    public void setSetInt(int value) {
         this.setText = String.valueOf(value);
     }
-
-
-
-
-
-
 }

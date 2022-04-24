@@ -8,12 +8,12 @@ public class NavDrawerItem {
     private String title;
     private String handle;
 
-    public NavDrawerItem(Connection connection){
+    public NavDrawerItem(Connection connection) {
         this.title = connection.getId();
         this.handle = connection.handle();
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
 

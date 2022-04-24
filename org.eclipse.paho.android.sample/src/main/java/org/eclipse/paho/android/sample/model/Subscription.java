@@ -4,7 +4,6 @@ package org.eclipse.paho.android.sample.model;
 public class Subscription {
 
 
-
     private String topic;
     private int qos;
     private String lastMessage;
@@ -12,7 +11,7 @@ public class Subscription {
     private long persistenceId;
     private boolean enableNotifications;
 
-    public Subscription(String topic, int qos, String clientHandle, boolean enableNotifications){
+    public Subscription(String topic, int qos, String clientHandle, boolean enableNotifications) {
         this.topic = topic;
         this.qos = qos;
         this.clientHandle = clientHandle;
@@ -74,7 +73,7 @@ public class Subscription {
                 ", qos=" + qos +
                 ", clientHandle='" + clientHandle + '\'' +
                 ", persistenceId='" + persistenceId + '\'' +
-                ", enableNotifications='" + enableNotifications + '\''+
+                ", enableNotifications='" + enableNotifications + '\'' +
                 '}';
     }
 }
