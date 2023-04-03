@@ -29,6 +29,9 @@ import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -232,7 +235,7 @@ public class MqttService extends Service implements MqttTraceHandler {
 	// needs to be set by the activity as appropriate
 	private String traceCallbackId;
 	// state of tracing
-	private boolean traceEnabled = false;
+	private boolean traceEnabled = true;
 
 	// somewhere to persist received messages until we're sure
 	// that they've reached the application
@@ -592,6 +595,20 @@ public class MqttService extends Service implements MqttTraceHandler {
      */
     @Override
     public int onStartCommand(final Intent intent, int flags, final int startId) {
+        NotificationChannel channel = new NotificationChannel("org.eclipse.paho.android.service.MqttService",
+                "MqttService",
+                NotificationManager.IMPORTANCE_DEFAULT);
+
+        ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).createNotificationChannel(channel);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Notification.Builder builder = new Notification.Builder(this, "org.eclipse.paho.android.service.MqttService")
+                    .setContentTitle("MqttService")
+                    .setContentText("MqttService running")
+                    .setAutoCancel(true);
+            Notification notification = builder.build();
+            startForeground(666, notification);
+        }
         // run till explicitly stopped, restart when process restarted
         registerBroadcastReceivers();
         return START_STICKY;
